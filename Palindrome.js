@@ -1,13 +1,14 @@
 var isPalindrome = function(x) {
-  let array = x.toString().split("");
-  let temp = [];
-  let newArr = [];
-  let lastItemIndex = array.length - 1;
-  for (let i = 0; i < array.length / 2; i++) {
-    newArr[i] = array[lastItemIndex - i];
-    newArr[lastItemIndex - i] = array[i];
+  if (x < 0 || (x % 10 === 0 && x !== 0)) {
+    return false;
   }
-  // console.log(newArr);
-  // console.log(array);
-  return newArr.join() === array.join();
+  let revertedNumber = 0;
+  while (x > revertedNumber) {
+    revertedNumber = parseInt(revertedNumber * 10 + (x % 10));
+    x = parseInt(x / 10);
+    // console.log("x = ", x)
+    // console.log("num = ", revertedNumber)
+  }
+
+  return x === revertedNumber || x === parseInt(revertedNumber / 10);
 };
